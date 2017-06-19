@@ -1,0 +1,19 @@
+<h2>Hero List</h2>
+
+<h2 [innerHTML]="'hero:'+selectedHero.name"></h2>
+<p><i>Pick a hero from the list</i></p>
+<ul>
+  <li 
+    #heroContainer 
+    (click)="selectHero(hero, heroContainer)"
+    *ngFor="let hero of heroes" >
+    {{hero.name}} ({{hero.power}})
+  </li>
+</ul>
+
+<span>new hero:</span>
+<input #newHero 
+  (keyup.enter)="addHero(newHero.value); newHero.value=''"/>
+<button class="btn" (click)="addHero(newHero.value); ">Add</button>
+
+<hero-detail *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>
